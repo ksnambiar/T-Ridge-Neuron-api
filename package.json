@@ -1,0 +1,11 @@
+{
+  "name": "ridge-neuron-api",
+  "version": "1.0.0",
+  "description": "Restful API to interact with T-Ridge Neuron",
+  "main": "api.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "T-Ridge inc.",
+  "license": "MIT"
+}
