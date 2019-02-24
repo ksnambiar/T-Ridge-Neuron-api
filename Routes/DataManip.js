@@ -1,8 +1,10 @@
 let express = require("express");
 let router = express.Router();
-let { connect } = require("lotion");
 let uuid1 = require("uuid/v1");
-let GCI = "442a563d48e0347d4cf1666055ad1ed4ef8b053b2a929755c6b29b7e87660ba0";
+let bip39 = require('bip39');
+let sha256 = require('crypto-js/sha256');
+let getData = require('../Block_Actions/block_state_retrieve');
+let transactionDispatch = require('../Block_Actions/block_transaction_dispatch')
 router.get("/", (req, res) => {
   res.status(200);
 });
@@ -10,14 +12,15 @@ router.get("/", (req, res) => {
 //creating a new User
 router.get("/createNewUser", (req, res) => {
   let uid = uuid1();
+let mneumonic = bip39.generateMnemonic()
   let data = {
     type: "addUser",
-    uid: uid
+    uid: uid,
+    key_hash:sha256(mneumonic).toString()
   };
-
   transactionDispatch(data)
     .then(obj =>
-      res.status(200).json({ status: "successful", payload: obj, uid: uid })
+      res.status(200).json({ status: "successful", payload: obj, uid: uid ,keyPhrase:mneumonic})
     )
     .catch(err => res.status(400).json({ error: err }));
 });
@@ -25,6 +28,7 @@ router.get("/createNewUser", (req, res) => {
 
 router.post("/:user/createBranch", (req, res) => {
   let uid = req.params.user;
+  let mneumonic = req.body.keyPhrase
   let data = {
     name: req.body.name,
     uid: uid,
@@ -77,19 +81,3 @@ router.get("/:user/allData", (req, res) => {
 });
 
 module.exports = router;
-
-//fuction to get the respective user state
-
-const getData = async uid => {
-  const { state } = await connect(GCI);
-  let data = await state[uid];
-  return data;
-};
-
-//function for transaction dispatch
-
-const transactionDispatch = async data => {
-  const { send } = await connect(GCI);
-  let result = await send(data);
-  return result;
-};

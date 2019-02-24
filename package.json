@@ -4,8 +4,18 @@
   "description": "Restful API to interact with T-Ridge Neuron",
   "main": "api.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon api.js"
   },
   "author": "T-Ridge inc.",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "bip39": "^2.5.0",
+    "body-parser": "^1.18.3",
+    "cors": "^2.8.5",
+    "crypto-js": "^3.1.9-1",
+    "cryptojs": "^2.5.3",
+    "express": "^4.16.4",
+    "lotion": "^0.4.9"
+  }
 }
