@@ -12,7 +12,7 @@ app.get("/", (req, res) => {
   res.json("welcome to ridge-neuron");
 });
 //content access route
-app.use("/api/data/", dataManip);
+app.use("/api/data", dataManip);
 
 //TODO validator set manipulation
 
