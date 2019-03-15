@@ -8,4 +8,10 @@ const getData = async uid => {
   return data;
 };
 
-module.exports = getData;
+const allData = async ()=>{
+  const { state } = await connect(GCI);
+  let data = await state;
+  return data;
+}
+
+module.exports = {getData,allData};

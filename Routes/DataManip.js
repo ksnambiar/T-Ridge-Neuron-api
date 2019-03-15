@@ -20,7 +20,7 @@ let mneumonic = bip39.generateMnemonic()
   };
   transactionDispatch(data)
     .then(obj =>
-      res.status(200).json({ status: "successful", payload: obj, uid: uid ,keyPhrase:mneumonic})
+      res.status(200).json({ status: "successful", payload: data, uid: uid ,keyPhrase:mneumonic})
     )
     .catch(err => res.status(400).json({ error: err }));
 });

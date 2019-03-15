@@ -2,7 +2,6 @@ let sha256 = require('crypto-js/sha256')
 let aes = require('crypto-js/aes')
 let crypto = require('crypto-js')
 let encrypt_data=(data,key)=>{
-
   let hashed=sha256(key)
   let encrypted_data=aes.encrypt(JSON.stringify(data),hashed.toString())
   console.log(encrypted_data.toString())
@@ -11,7 +10,6 @@ let encrypt_data=(data,key)=>{
     stamp:sha256(encrypted_data).toString(),
     encryption_stamp:Date.now()
   })
-
 }
 encrypt_data("hello","stomp");
 let decrypt_data = (data,key)=>{
