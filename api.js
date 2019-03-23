@@ -17,10 +17,5 @@ app.get("/", (req, res) => {
 app.use("/api/data", neuron);
 app.use("/api/euphony",euph);
 // app.use("/api/transfer",dataTransfer)
-//TODO validator set manipulation
 
-const port = process.env.port || 5000;
-
-app.listen(port, () => {
-  console.log("listening at " + port);
-});
+app.listen(process.env.port || 5000)
