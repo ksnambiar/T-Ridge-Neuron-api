@@ -3,6 +3,7 @@ let app = express();
 let bodyParser = require("body-parser");
 const dataManip = require("./Routes/DataManip");
 const neuron = require('./Routes/api/Neuron/data');
+const euph = require("./Routes/api/Euphony/data");
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }));
 
@@ -14,7 +15,7 @@ app.get("/", (req, res) => {
 });
 //content access route
 app.use("/api/data", neuron);
-// app.use("/api/euphony",euph_handler)
+app.use("/api/euphony",euph);
 // app.use("/api/transfer",dataTransfer)
 //TODO validator set manipulation
 
